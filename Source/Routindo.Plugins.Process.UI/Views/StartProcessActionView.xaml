@@ -136,7 +136,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Wait" />
-                    <CheckBox Grid.Column="1" Width="300" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
+                    <CheckBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
                              IsChecked="{Binding Path=WaitForExit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     <TextBlock Grid.Column="3" Text="Wait for process to exit" />
                 </Grid>
@@ -149,7 +149,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Wait Timeout" />
-                    <TextBox Grid.Column="1" Width="300" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
+                    <TextBox Grid.Column="1" Width="140" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
                              Text="{Binding Path=WaitForExitTimeout, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     <TextBlock Grid.Column="2" Text="ms" FontStyle="Italic" />
                     <TextBlock Grid.Column="3" Text="Maximum time in milliseconds to wait for process to exit" />
