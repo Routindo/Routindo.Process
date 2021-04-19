@@ -121,7 +121,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Content="Arguments" />
                     <TextBox Grid.Column="1" MinWidth="400" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
-                             Text="{Binding Path=ProcessWorkingDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                             Text="{Binding Path=ProcessArguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                 </Grid>
 
                 <Grid Margin="10 5">
