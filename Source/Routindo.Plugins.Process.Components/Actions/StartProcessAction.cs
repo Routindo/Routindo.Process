@@ -1,32 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Routindo.Contract.Actions;
 using Routindo.Contract.Arguments;
+using Routindo.Contract.Attributes;
 using Routindo.Contract.Exceptions;
 using Routindo.Contract.Services;
 using Exception = System.Exception;
 
 namespace Routindo.Plugins.Process.Components.Actions
 {
+    [PluginItemInfo(ComponentUniqueId, "Start Process",
+         "Start a specific process in background with arguments and on a specific working directory"),
+     ExecutionArgumentsClass(typeof(StartProcessActionExecutionArgs)), 
+     ResultArgumentsClass(typeof(StartProcessActionResultArgs))]
     public class StartProcessAction: IAction
     {
+        public const string ComponentUniqueId = "24B4DD70-395D-4414-8D1A-36CC1D494B13";
+
         public string Id { get; set; }
         public ILoggingService LoggingService { get; set; }
 
-        public string ProcessPath { get; set; }
+        [Argument(StartProcessActionArgs.ProcessPath)] public string ProcessPath { get; set; }
 
-        public string ProcessArguments { get; set; }
+        [Argument(StartProcessActionArgs.ProcessArguments)] public string ProcessArguments { get; set; }
 
-        public string ProcessWorkingDirectory { get; set; }
+        [Argument(StartProcessActionArgs.ProcessWorkingDirectory)] public string ProcessWorkingDirectory { get; set; }
 
-        public bool WaitForExit { get; set; }
+        [Argument(StartProcessActionArgs.WaitForExit)] public bool WaitForExit { get; set; }
 
-        public int WaitForExitTimeout { get; set; }
+        [Argument(StartProcessActionArgs.WaitForExitTimeout)] public int WaitForExitTimeout { get; set; }
 
         public ActionResult Execute(ArgumentCollection arguments)
         {
@@ -110,30 +112,5 @@ namespace Routindo.Plugins.Process.Components.Actions
                 return ActionResult.Failed().WithAdditionInformation(resultArgumentCollection);
             }
         }
-    }
-
-    public static class StartProcessActionArgs
-    {
-        public const string ProcessPath = nameof(ProcessPath);
-        public const string ProcessArguments = nameof(ProcessArguments);
-        public const string ProcessWorkingDirectory = nameof(ProcessWorkingDirectory);
-        public const string WaitForExit = nameof(WaitForExit);
-        public const string WaitForExitTimeout = nameof(WaitForExitTimeout);
-    } 
-
-    public static class StartProcessActionExecutionArgs
-    {
-        public const string ProcessPath = nameof(ProcessPath);
-        public const string ProcessArguments = nameof(ProcessArguments);
-        public const string ProcessWorkingDirectory = nameof(ProcessWorkingDirectory);
-    }
-
-    public static class StartProcessActionResultArgs
-    {
-        public const string ProcessPath = nameof(ProcessPath);
-        public const string ProcessArguments = nameof(ProcessArguments);
-        public const string ProcessWorkingDirectory = nameof(ProcessWorkingDirectory);
-        public const string ProcessExited = nameof(ProcessExited);
-        public const string ProcessStarted = nameof(ProcessStarted);
     }
 }
