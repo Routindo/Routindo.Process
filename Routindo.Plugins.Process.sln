@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A95017
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{133704FD-C648-4C2F-87DC-7DD4D76BEF27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Template.UI.Preview", "Source\Routindo.Plugins.Template.UI.Preview\Routindo.Plugins.Template.UI.Preview.csproj", "{DC9C1299-638B-4B53-8159-60D487A3BCF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Process.UI.Preview", "Source\Routindo.Plugins.Process.UI.Preview\Routindo.Plugins.Process.UI.Preview.csproj", "{DC9C1299-638B-4B53-8159-60D487A3BCF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Template", "Source\Routindo.Plugins.Template\Routindo.Plugins.Template.csproj", "{C91B9B3F-DD90-438B-97A1-69CC257ED387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Process", "Source\Routindo.Plugins.Process\Routindo.Plugins.Process.csproj", "{C91B9B3F-DD90-438B-97A1-69CC257ED387}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Template.UI", "Source\Routindo.Plugins.Template.UI\Routindo.Plugins.Template.UI.csproj", "{DA3CCEDB-0140-4B92-81BB-0E8E8447D403}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Process.UI", "Source\Routindo.Plugins.Process.UI\Routindo.Plugins.Process.UI.csproj", "{DA3CCEDB-0140-4B92-81BB-0E8E8447D403}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Template.Components", "Source\Routindo.Plugins.Template.Components\Routindo.Plugins.Template.Components.csproj", "{C7D53F11-B27B-4C65-BB58-6674D0B946A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Process.Components", "Source\Routindo.Plugins.Process.Components\Routindo.Plugins.Process.Components.csproj", "{C7D53F11-B27B-4C65-BB58-6674D0B946A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Template.Tests", "Tests\Routindo.Plugins.Template.Tests\Routindo.Plugins.Template.Tests.csproj", "{8EA42F1A-A5A8-43DE-8BB8-8C62447FA97E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Routindo.Plugins.Process.Tests", "Tests\Routindo.Plugins.Process.Tests\Routindo.Plugins.Process.Tests.csproj", "{8EA42F1A-A5A8-43DE-8BB8-8C62447FA97E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

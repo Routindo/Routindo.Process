@@ -16,7 +16,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Source\Routindo.Plugins.Template.Components\Routindo.Plugins.Template.Components.csproj" />
+		<ProjectReference Include="..\..\Source\Routindo.Plugins.Process.Components\Routindo.Plugins.Process.Components.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

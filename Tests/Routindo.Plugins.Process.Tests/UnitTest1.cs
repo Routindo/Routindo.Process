@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Routindo.Plugins.Template.Tests
+namespace Routindo.Plugins.Process.Tests
 {
     [TestClass]
     public class UnitTest1
