@@ -14,7 +14,7 @@ namespace Routindo.Plugins.Process.UI.ViewModels
         private string _processArguments;
         private string _processWorkingDirectory;
         private bool _waitForExit;
-        private int _waitForExitTimeout;
+        private int _waitForExitTimeout = 100;
 
         public StartProcessActionViewModel()
         {

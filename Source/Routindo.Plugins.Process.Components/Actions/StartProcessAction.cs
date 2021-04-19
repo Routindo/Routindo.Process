@@ -46,7 +46,7 @@ namespace Routindo.Plugins.Process.Components.Actions
 
                 processPath = Environment.ExpandEnvironmentVariables(processPath);
 
-                if(!File.Exists(processPath))
+                if(Path.IsPathRooted(processPath) && !File.Exists(processPath))
                     throw new Exception($"The file set as process path doesn't exist, {processPath}");
                 #endregion 
 
@@ -56,11 +56,11 @@ namespace Routindo.Plugins.Process.Components.Actions
                 if (string.IsNullOrWhiteSpace(processWorkingDirectory))
                     processWorkingDirectory = ProcessWorkingDirectory;
 
-                if (string.IsNullOrWhiteSpace(processWorkingDirectory))
+                if (Path.IsPathRooted(processPath) && string.IsNullOrWhiteSpace(processWorkingDirectory))
                     processWorkingDirectory = Path.GetDirectoryName(processPath);
 
-                if (string.IsNullOrWhiteSpace(processWorkingDirectory))
-                    throw new MissingArgumentException(StartProcessActionArgs.ProcessWorkingDirectory);
+                //if (string.IsNullOrWhiteSpace(processWorkingDirectory))
+                //    throw new MissingArgumentException(StartProcessActionArgs.ProcessWorkingDirectory);
 
                 #endregion 
 
@@ -78,10 +78,12 @@ namespace Routindo.Plugins.Process.Components.Actions
                     {
                         FileName = processPath,
                         Arguments = processArguments,
-                        WorkingDirectory = processWorkingDirectory,
                         CreateNoWindow = true,
                     }
                 };
+
+                if (!string.IsNullOrWhiteSpace(processWorkingDirectory))
+                    process.StartInfo.WorkingDirectory = processWorkingDirectory;
 
                 resultArgumentCollection = ArgumentCollection.New()
                     .WithArgument(StartProcessActionResultArgs.ProcessPath, processPath)

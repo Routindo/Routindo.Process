@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Routindo.Plugins.Process.UI.Views.StartProcessActionView"
+﻿<UserControl x:Class="Routindo.Plugins.Process.UI.Views.KillProcessByNameActionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
-        <viewModels:StartProcessActionViewModel/>
+        <viewModels:KillProcessByNameActionViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,7 +27,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Start Process Configuration"  FontWeight="Bold" FontSize="16"/>
+        <TextBlock Text="Kill Process by Name Configuration"  FontWeight="Bold" FontSize="16"/>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Grid.IsSharedSizeScope="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -41,11 +41,10 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Content="Process Path" />
+                    <Label Content="Process Name" />
                     <TextBox Grid.Column="1" Width="300" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
-                         Text="{Binding Path=ProcessPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-                    <Button Grid.Column="3" Content="Select" Command="{Binding Path=SelectFilePathCommand}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="4" Text="The path to the Binary to execute" />
+                         Text="{Binding Path=ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <TextBlock Grid.Column="4" Text="The friendly name of the process to kill" />
                 </Grid>
 
                 <Grid Margin="10 5">
@@ -53,24 +52,12 @@
                         <ColumnDefinition Width="Auto"  SharedSizeGroup="Label"/>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Content="Working Directory" />
-                    <TextBox Grid.Column="1" Width="300" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
-                             Text="{Binding Path=ProcessWorkingDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-                    <Button Grid.Column="3" Content="Select" Command="{Binding Path=SelectDirectoryCommand}" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="4" Text="The directory path where to execute the process" />
-                </Grid>
-
-                <Grid Margin="10 5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"  SharedSizeGroup="Label"/>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Arguments" />
-                    <TextBox Grid.Column="1" MinWidth="400" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
-                             Text="{Binding Path=ProcessArguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label Content="Entire Process Tree" />
+                    <CheckBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
+                              IsChecked="{Binding Path=EntireProcessTree, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <TextBlock Grid.Column="3" Text="Check this to kill the associated process and its descendants; to kill only the associated process keep unchecked." />
                 </Grid>
 
                 <Grid Margin="10 5">

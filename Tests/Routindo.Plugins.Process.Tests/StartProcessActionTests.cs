@@ -49,5 +49,22 @@ namespace Routindo.Plugins.Process.Tests
             Assert.AreEqual(true,
                 actionResult.AdditionalInformation.GetValue<bool>(StartProcessActionResultArgs.ProcessExited));
         }
+
+        [TestMethod]
+        [TestCategory("Integration Test")]
+        public void StartProcessNotepadTest() 
+        {
+            string processPath = @"notepad";
+            StartProcessAction startProcessAction = new StartProcessAction()
+            {
+                Id = PluginUtilities.GetUniqueId(),
+                LoggingService = ServicesContainer.ServicesProvider.GetLoggingService(nameof(StartProcessAction)),
+                ProcessPath = processPath,
+            };
+
+            var actionResult = startProcessAction.Execute(ArgumentCollection.New());
+            Assert.IsNotNull(actionResult);
+            Assert.IsTrue(actionResult.Result);
+        }
     }
 }

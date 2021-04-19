@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <views:StartProcessActionView/>
+        <TabControl>
+            <TabItem Header="Start Process">
+                <views:StartProcessActionView/>
+            </TabItem>
+            <TabItem Header="Kill Process by Id">
+                <views:KillProcessByIdActionView/>
+            </TabItem>
+            <TabItem Header="Kill Process by Name">
+                <views:KillProcessByNameActionView/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
