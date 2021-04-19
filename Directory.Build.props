@@ -1,0 +1,11 @@
+<Project>
+	<PropertyGroup>
+		<Company>Company Name</Company>
+		<Authors>Author Name</Authors>
+		<Product>Routindo 21 - Plugin Template</Product>
+		<Copyright>Copyright © 2021 - All rights reserved</Copyright>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<!--<VersionSuffix>alpha</VersionSuffix>-->
+		<NeutralLanguage>en</NeutralLanguage>
+	</PropertyGroup>
+</Project>
