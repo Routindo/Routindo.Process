@@ -1,6 +1,10 @@
-﻿using Routindo.Contract.Arguments;
+﻿
+using System.Windows.Forms;
+using System.Windows.Input;
+using Routindo.Contract.Arguments;
 using Routindo.Contract.UI;
 using Routindo.Plugins.Process.Components.Actions;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace Routindo.Plugins.Process.UI.ViewModels
 {
@@ -11,6 +15,12 @@ namespace Routindo.Plugins.Process.UI.ViewModels
         private string _processWorkingDirectory;
         private bool _waitForExit;
         private int _waitForExitTimeout;
+
+        public StartProcessActionViewModel()
+        {
+            this.SelectDirectoryCommand = new RelayCommand(SelectDirectory); 
+            this.SelectFilePathCommand = new RelayCommand(SelectFilePath);
+        }
 
         public string ProcessPath
         {
@@ -63,6 +73,40 @@ namespace Routindo.Plugins.Process.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public ICommand SelectDirectoryCommand { get; }
+
+        private void SelectDirectory()
+        {
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            {
+                if (!string.IsNullOrWhiteSpace(ProcessWorkingDirectory))
+                {
+                    dialog.SelectedPath = ProcessWorkingDirectory;
+                }
+
+                dialog.Description = "Directory where to watch for new files";
+                dialog.ShowNewFolderButton = true;
+                dialog.UseDescriptionForTitle = true;
+                var dialogResult = dialog.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    ProcessWorkingDirectory = dialog.SelectedPath;
+                }
+            }
+        }
+
+        private void SelectFilePath() 
+        {
+            var openFileDialog = new OpenFileDialog { CheckFileExists = false, Title = "Select File" };
+            var result = openFileDialog.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                this.ProcessPath = openFileDialog.FileName;
+            }
+        }
+
+        public ICommand SelectFilePathCommand { get; } 
 
         public override void Configure()
         {
