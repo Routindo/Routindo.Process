@@ -5,7 +5,6 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Actions\" />
     <Folder Include="ArgumentsMappers\" />
     <Folder Include="Watchers\" />
   </ItemGroup>
