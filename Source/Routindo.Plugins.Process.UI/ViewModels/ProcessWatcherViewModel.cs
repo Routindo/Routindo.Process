@@ -20,6 +20,7 @@ namespace Routindo.Plugins.Process.UI.ViewModels
     {
         private string _processName;
         private string _selectedProcessName;
+        private bool _watchForStopped;
 
         public ProcessWatcherViewModel()
         {
@@ -77,6 +78,16 @@ namespace Routindo.Plugins.Process.UI.ViewModels
             }
         }
 
+        public bool WatchForStopped
+        {
+            get => _watchForStopped;
+            set
+            {
+                _watchForStopped = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool CanUseSelectedProcessName()
         {
             return !string.IsNullOrWhiteSpace(SelectedProcessName);
@@ -106,13 +117,17 @@ namespace Routindo.Plugins.Process.UI.ViewModels
         public override void Configure()
         {
             this.InstanceArguments = ArgumentCollection.New()
-                .WithArgument(ProcessWatcherArgs.ProcessName, ProcessName);
+                .WithArgument(ProcessWatcherArgs.ProcessName, ProcessName)
+                .WithArgument(ProcessWatcherArgs.WatchForStopped, WatchForStopped);
         }
 
         public override void SetArguments(ArgumentCollection arguments)
         {
             if (arguments.HasArgument(ProcessWatcherArgs.ProcessName))
                 ProcessName = arguments.GetValue<string>(ProcessWatcherArgs.ProcessName);
+
+            if (arguments.HasArgument(ProcessWatcherArgs.WatchForStopped))
+                WatchForStopped = arguments.GetValue<bool>(ProcessWatcherArgs.WatchForStopped);
         }
     }
 }

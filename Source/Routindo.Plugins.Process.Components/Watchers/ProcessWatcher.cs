@@ -21,6 +21,13 @@ namespace Routindo.Plugins.Process.Components.Watchers
 
         [Argument(ProcessWatcherArgs.ProcessName, true)] public string ProcessName { get; set; }
 
+        [Argument(ProcessWatcherArgs.WatchForStopped)] public bool WatchForStopped { get; set; }
+
+        /// <summary>
+        /// The last status: true: Process running, False: Process stopped.
+        /// </summary>
+        private bool? _lastStatus;
+
         public WatcherResult Watch()
         {
             try
@@ -30,8 +37,33 @@ namespace Routindo.Plugins.Process.Components.Watchers
 
                 var processes = System.Diagnostics.Process.GetProcessesByName(ProcessName);
                 var process = processes.FirstOrDefault(e => !e.HasExited);
-                if (process != null)
+                if (WatchForStopped)
                 {
+                    if (process == null && (
+                        // First Time after service started
+                        !_lastStatus.HasValue 
+                        // Or process was previously running
+                        || _lastStatus.Value))
+                    {
+                        _lastStatus = false;
+                        return WatcherResult.Succeed(
+                            ArgumentCollection.New()
+                                .WithArgument(ProcessWatcherResultArgs.ProcessName, ProcessName)
+                        );
+                    }
+
+                    _lastStatus = process != null;
+                    return WatcherResult.NotFound;
+                }
+
+                if (process != null && (
+                        // First Time after service started
+                        !_lastStatus.HasValue
+                        // Or process was previously stopped
+                        || !_lastStatus.Value)
+                    )
+                {
+                    _lastStatus = true;
                     return WatcherResult.Succeed(
                         ArgumentCollection.New()
                             .WithArgument(ProcessWatcherResultArgs.ProcessName, process.ProcessName)
@@ -39,6 +71,7 @@ namespace Routindo.Plugins.Process.Components.Watchers
                     );
                 }
 
+                _lastStatus = process != null;
                 return WatcherResult.NotFound;
             }
             catch (Exception exception)

@@ -3,5 +3,7 @@
     public static class ProcessWatcherArgs
     {
         public const string ProcessName = nameof(ProcessName);
+
+        public const string WatchForStopped = nameof(WatchForStopped);
     }
 }
