@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="ArgumentsMappers\" />
-    <Folder Include="Watchers\" />
   </ItemGroup>
 
 	

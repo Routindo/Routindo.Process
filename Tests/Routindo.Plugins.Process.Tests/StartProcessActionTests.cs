@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Routindo.Contract;
 using Routindo.Contract.Arguments;
@@ -65,6 +66,8 @@ namespace Routindo.Plugins.Process.Tests
             var actionResult = startProcessAction.Execute(ArgumentCollection.New());
             Assert.IsNotNull(actionResult);
             Assert.IsTrue(actionResult.Result);
+
+            System.Diagnostics.Process.GetProcessesByName(processPath).FirstOrDefault()?.Kill();
         }
     }
 }

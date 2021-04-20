@@ -17,6 +17,9 @@
             <TabItem Header="Kill Process by Name">
                 <views:KillProcessByNameActionView/>
             </TabItem>
+            <TabItem Header="Process Watcher">
+                <views:ProcessWatcherView/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
