@@ -13,6 +13,9 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" /> 
+                </ResourceDictionary>
                 <ResourceDictionary Source="../Styles.xaml" />
                 <ResourceDictionary Source="../Templates.xaml" />
 
@@ -40,6 +43,30 @@
                 <CheckBox Grid.Column="1" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
                           IsChecked="{Binding Path=WatchForStopped, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                 <TextBlock Grid.Column="3" Text="Notify only if the target process is stopped" />
+            </Grid>
+
+            <Grid Margin="10 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"  SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Only First Occurrence" />
+                <CheckBox Grid.Row="0" Grid.Column="1" Validation.ErrorTemplate="{StaticResource ErrorControlTemplate}"
+                          IsChecked="{Binding Path=NotifyOnlyOnFirstOccurrence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Notify only the first time when the process is running or stopped." />
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                        Visibility="{Binding Path=ShowFirstOccurrenceWarning, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="LightYellow" BorderThickness="1" BorderBrush="DarkRed"
+                        >
+                    <TextBlock  TextWrapping="Wrap" Foreground="DarkRed"
+                                Text="If this is unchecked, The watcher will reports the status of the process each time is executed, and may cause the multi execution of all flow actions." />
+                </Border>
             </Grid>
 
             <Grid  Margin="10 5">

@@ -21,6 +21,7 @@ namespace Routindo.Plugins.Process.UI.ViewModels
         private string _processName;
         private string _selectedProcessName;
         private bool _watchForStopped;
+        private bool _notifyOnlyOnFirstOccurrence = true;
 
         public ProcessWatcherViewModel()
         {
@@ -88,6 +89,19 @@ namespace Routindo.Plugins.Process.UI.ViewModels
             }
         }
 
+        public bool NotifyOnlyOnFirstOccurrence
+        {
+            get => _notifyOnlyOnFirstOccurrence;
+            set
+            {
+                _notifyOnlyOnFirstOccurrence = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowFirstOccurrenceWarning));
+            }
+        }
+
+        public bool ShowFirstOccurrenceWarning => !NotifyOnlyOnFirstOccurrence;
+
         private bool CanUseSelectedProcessName()
         {
             return !string.IsNullOrWhiteSpace(SelectedProcessName);
@@ -118,7 +132,9 @@ namespace Routindo.Plugins.Process.UI.ViewModels
         {
             this.InstanceArguments = ArgumentCollection.New()
                 .WithArgument(ProcessWatcherArgs.ProcessName, ProcessName)
-                .WithArgument(ProcessWatcherArgs.WatchForStopped, WatchForStopped);
+                .WithArgument(ProcessWatcherArgs.WatchForStopped, WatchForStopped)
+                .WithArgument(ProcessWatcherArgs.NotifyOnlyOnFirstOccurrence, NotifyOnlyOnFirstOccurrence)
+                ;
         }
 
         public override void SetArguments(ArgumentCollection arguments)
@@ -128,6 +144,9 @@ namespace Routindo.Plugins.Process.UI.ViewModels
 
             if (arguments.HasArgument(ProcessWatcherArgs.WatchForStopped))
                 WatchForStopped = arguments.GetValue<bool>(ProcessWatcherArgs.WatchForStopped);
+
+            if (arguments.HasArgument(ProcessWatcherArgs.NotifyOnlyOnFirstOccurrence))
+                NotifyOnlyOnFirstOccurrence = arguments.GetValue<bool>(ProcessWatcherArgs.NotifyOnlyOnFirstOccurrence);
         }
     }
 }

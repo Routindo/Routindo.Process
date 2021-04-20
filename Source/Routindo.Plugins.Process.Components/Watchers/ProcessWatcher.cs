@@ -23,6 +23,8 @@ namespace Routindo.Plugins.Process.Components.Watchers
 
         [Argument(ProcessWatcherArgs.WatchForStopped)] public bool WatchForStopped { get; set; }
 
+        [Argument(ProcessWatcherArgs.NotifyOnlyOnFirstOccurrence)] public bool NotifyOnlyOnFirstOccurrence { get; set; } 
+         
         /// <summary>
         /// The last status: true: Process running, False: Process stopped.
         /// </summary>
@@ -37,6 +39,10 @@ namespace Routindo.Plugins.Process.Components.Watchers
 
                 var processes = System.Diagnostics.Process.GetProcessesByName(ProcessName);
                 var process = processes.FirstOrDefault(e => !e.HasExited);
+
+                if (!NotifyOnlyOnFirstOccurrence)
+                    _lastStatus = null;
+
                 if (WatchForStopped)
                 {
                     if (process == null && (
