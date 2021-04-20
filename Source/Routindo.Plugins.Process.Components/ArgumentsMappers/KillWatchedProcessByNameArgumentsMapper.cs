@@ -6,7 +6,7 @@ using Routindo.Plugins.Process.Components.Watchers;
 
 namespace Routindo.Plugins.Process.Components.ArgumentsMappers
 {
-    [PluginItemInfo(ComponentId, "KillProcessByIdArgumentsMapper",
+    [PluginItemInfo(ComponentId, nameof(KillWatchedProcessByNameArgumentsMapper),
         "Map arguments of " + nameof(ProcessWatcher) + "to arguments of " + nameof(KillProcessByNameAction))]
     public class KillWatchedProcessByNameArgumentsMapper : IArgumentsMapper
     {
