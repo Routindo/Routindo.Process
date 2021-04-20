@@ -4,10 +4,6 @@
 		<TargetFramework>net5.0-windows</TargetFramework>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="ArgumentsMappers\" />
-  </ItemGroup>
-
 	
 
 	<ItemGroup>
