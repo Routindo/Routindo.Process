@@ -8,8 +8,8 @@ using Routindo.Contract.Watchers;
 
 namespace Routindo.Plugins.Process.Components.Watchers
 {
-    [PluginItemInfo(ComponentUniqueId, "Watch Process",
-         "Watch list of processes and check if a specific process is started."),
+    [PluginItemInfo(ComponentUniqueId, nameof(ProcessWatcher),
+         "Watch a specific process status and check if a specific process is started or stopped.", Category = "Process", FriendlyName = "Monitor Process"),
      ResultArgumentsClass(typeof(ProcessWatcherResultArgs))]
     public class ProcessWatcher: IWatcher
     {

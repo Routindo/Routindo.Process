@@ -5,8 +5,8 @@ using Routindo.Contract.Exceptions;
 
 namespace Routindo.Plugins.Process.Components.Actions
 {
-    [PluginItemInfo(ComponentUniqueId, "Kill Process by Name",
-         "forces a termination of one or more processes using the process name"),
+    [PluginItemInfo(ComponentUniqueId, nameof(KillProcessByNameAction),
+         "forces a termination of one or more processes using the process name", Category = "Process", FriendlyName = "Kill Process by Name"),
      ExecutionArgumentsClass(typeof(KillProcessByNameActionExecutionArgs)),
      ResultArgumentsClass(typeof(KillProcessActionResultArgs))]
     public class KillProcessByNameAction: KillProcessAction

@@ -9,8 +9,8 @@ using Exception = System.Exception;
 
 namespace Routindo.Plugins.Process.Components.Actions
 {
-    [PluginItemInfo(ComponentUniqueId, "Start Process",
-         "Start a specific process in background with arguments and on a specific working directory"),
+    [PluginItemInfo(ComponentUniqueId, nameof(StartProcessAction),
+         "Start a specific process in background with arguments and on a specific working directory", Category = "Process", FriendlyName = "Start Process"),
      ExecutionArgumentsClass(typeof(StartProcessActionExecutionArgs)), 
      ResultArgumentsClass(typeof(StartProcessActionResultArgs))]
     public class StartProcessAction: IAction
